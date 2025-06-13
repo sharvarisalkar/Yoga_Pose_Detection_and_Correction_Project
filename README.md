@@ -1,4 +1,4 @@
-# 🧘‍♂️ Yoga_Pose_Detection_and_Correction_Project
+# 🧘‍♂️ Yoga_Pose_Detection_and_Correction_System
 
 Welcome to the Yoga Pose Detection and Correction System! This project uses computer vision and machine learning to help you practice yoga safely and effectively — even without a yoga instructor.
 
