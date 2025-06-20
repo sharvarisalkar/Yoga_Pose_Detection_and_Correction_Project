@@ -2,7 +2,7 @@
 
 Welcome to the Yoga Pose Detection and Correction System! This project uses computer vision and machine learning to help you practice yoga safely and effectively — even without a yoga instructor.
 
-**🌟 Project Overview - **
+**📖 Project Overview -**
 Many beginners struggle to perform yoga poses correctly without proper guidance, which can lead to injuries or ineffective practice. Our project, Yoga Pose Detection and Correction System, helps solve this by using MediaPipe Pose and OpenCV to detect poses through a webcam and give real-time feedback. It checks the user’s posture by analyzing body landmarks and angles, compares them with correct pose data, and shows on-screen corrections if needed. The system includes two rounds of practice to help users improve and safely master each pose; without needing any extra devices or sensors.
 
 **⚙️ Methodology -**
