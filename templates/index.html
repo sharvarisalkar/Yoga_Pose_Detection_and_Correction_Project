@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Pose Detection & Correction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">🧘 YogaAI</div>
+            <ul class="nav-menu">
+                <li><a href="/" class="active">Home</a></li>
+                <li><a href="/practice">Practice</a></li>
+                <li><a href="/history">History</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Perfect Your Yoga Practice</h1>
+            <p class="hero-subtitle">AI-powered real-time pose detection and correction</p>
+            <p class="hero-description">
+                Experience personalized guidance with our advanced computer vision system. 
+                Get instant feedback on your form and track your progress through guided yoga sessions.
+            </p>
+            <a href="/practice" class="btn btn-primary btn-large">Start Your Practice</a>
+        </div>
+        <div class="hero-image">
+            <div class="pose-grid">
+                <div class="pose-card">
+                    <img src="{{ url_for('static', filename='images/tree_pose.jpg') }}" alt="Tree Pose">
+                    <span class="pose-label">Tree Pose</span>
+                </div>
+                <div class="pose-card">
+                    <img src="{{ url_for('static', filename='images/lotus_pose.jpg') }}" alt="Lotus Pose">
+                    <span class="pose-label">Lotus Pose</span>
+                </div>
+                <div class="pose-card">
+                    <img src="{{ url_for('static', filename='images/goddess_pose.jpg') }}" alt="Goddess Pose">
+                    <span class="pose-label">Goddess Pose</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📹</div>
+                    <h3>Real-Time Detection</h3>
+                    <p>Our AI analyzes your poses in real-time using your webcam, providing instant visual feedback on your form.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Smart Corrections</h3>
+                    <p>Receive specific, actionable feedback on how to adjust your posture for optimal alignment and safety.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Progress Tracking</h3>
+                    <p>Monitor your yoga journey with detailed session history and improvement metrics over time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Guided Sequences</h3>
+                    <p>Follow structured pose sequences designed to flow naturally from standing to seated positions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧘</div>
+                    <h3>6 Core Poses</h3>
+                    <p>Master essential yoga poses including Tree, Downward Dog, Goddess, Lotus, Butterfly, and Easy Pose.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💚</div>
+                    <h3>Meditation Timer</h3>
+                    <p>Complete your practice with guided meditation and breathing exercises in the final pose.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="poses-section">
+        <div class="container">
+            <h2 class="section-title">Practice These Poses</h2>
+            <div class="poses-showcase">
+                <div class="showcase-card">
+                    <img src="{{ url_for('static', filename='images/tree_pose.jpg') }}" alt="Tree Pose">
+                    <div class="showcase-info">
+                        <h3>Tree Pose</h3>
+                        <p>Improves balance and strengthens legs</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="{{ url_for('static', filename='images/downward_dog.jpg') }}" alt="Downward Dog">
+                    <div class="showcase-info">
+                        <h3>Downward Dog</h3>
+                        <p>Stretches entire body, builds strength</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="{{ url_for('static', filename='images/goddess_pose.jpg') }}" alt="Goddess Pose">
+                    <div class="showcase-info">
+                        <h3>Goddess Pose</h3>
+                        <p>Strengthens lower body, opens hips</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="{{ url_for('static', filename='images/lotus_pose.jpg') }}" alt="Lotus Pose">
+                    <div class="showcase-info">
+                        <h3>Lotus Pose</h3>
+                        <p>Calms mind, improves flexibility</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="{{ url_for('static', filename='images/butterfly_pose.jpg') }}" alt="Butterfly Pose">
+                    <div class="showcase-info">
+                        <h3>Butterfly Pose</h3>
+                        <p>Opens hips, stretches inner thighs</p>
+                    </div>
+                </div>
+                <div class="showcase-card">
+                    <img src="{{ url_for('static', filename='images/easy_pose.jpg') }}" alt="Easy Pose">
+                    <div class="showcase-info">
+                        <h3>Easy Pose</h3>
+                        <p>Meditation position, promotes calm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Practice?</h2>
+                <p>Start your personalized yoga journey today with AI-powered guidance</p>
+                <a href="/practice" class="btn btn-primary btn-large">Begin Your Session</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

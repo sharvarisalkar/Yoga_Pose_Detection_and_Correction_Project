@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session History - Yoga Pose Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">🧘 YogaAI</div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/practice">Practice</a></li>
+                <li><a href="/history" class="active">History</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="history-container">
+        <div class="container">
+            <h1 class="page-title">Your Practice History</h1>
+            
+            {% if sessions %}
+                <div class="stats-overview">
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-info">
+                            <div class="stat-number">{{ sessions|length }}</div>
+                            <div class="stat-text">Total Sessions</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-info">
+                            <div class="stat-number">{{ "%.1f"|format(sessions|sum(attribute='duration_minutes')) }}</div>
+                            <div class="stat-text">Total Minutes</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🎯</div>
+                        <div class="stat-info">
+                            <div class="stat-number">{{ sessions|sum(attribute='poses_completed') }}</div>
+                            <div class="stat-text">Poses Completed</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🔄</div>
+                        <div class="stat-info">
+                            <div class="stat-number">{{ sessions|sum(attribute='rounds_completed') }}</div>
+                            <div class="stat-text">Rounds Completed</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="history-list">
+                    <h2 class="section-subtitle">Recent Sessions</h2>
+                    <div class="session-cards">
+                        {% for session in sessions|reverse %}
+                        <div class="session-card">
+                            <div class="session-header">
+                                <span class="session-date">📆 {{ session.date }}</span>
+                                <span class="session-duration">⏱️ {{ session.duration_minutes }} min</span>
+                            </div>
+                            <div class="session-body">
+                                <div class="session-metric">
+                                    <span class="metric-label">Poses:</span>
+                                    <span class="metric-value">{{ session.poses_completed }}</span>
+                                </div>
+                                <div class="session-metric">
+                                    <span class="metric-label">Rounds:</span>
+                                    <span class="metric-value">{{ session.rounds_completed }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <div class="empty-icon">📊</div>
+                    <h2>No Practice History Yet</h2>
+                    <p>Start your first practice session to see your progress tracked here!</p>
+                    <a href="/practice" class="btn btn-primary">Start Practicing</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+</body>
+</html>

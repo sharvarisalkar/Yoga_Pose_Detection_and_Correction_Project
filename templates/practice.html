@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Session - Yoga Pose Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">🧘 YogaAI</div>
+            <ul class="nav-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/practice" class="active">Practice</a></li>
+                <li><a href="/history">History</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="practice-container">
+        <div id="welcomeScreen" class="welcome-screen">
+            <div class="welcome-content">
+                <h1>Welcome to Your Practice Session</h1>
+                <p class="welcome-text">
+                    You'll be guided through a sequence of 6 yoga poses. Hold each pose for 3 seconds to progress.
+                    The meditation pose at the end will last for 60 seconds with guided breathing.
+                </p>
+                <div class="pose-sequence">
+                    <h3>Today's Sequence:</h3>
+                    <ol class="sequence-list">
+                        <li><strong>Stand Up</strong> - Prepare for standing poses</li>
+                        <li><strong>Tree Pose</strong> - Balance and focus</li>
+                        <li><strong>Downward Dog</strong> - Full body stretch</li>
+                        <li><strong>Goddess Pose</strong> - Strength and stability</li>
+                        <li><strong>Sit Down</strong> - Transition to seated poses</li>
+                        <li><strong>Lotus Pose</strong> - Hip flexibility</li>
+                        <li><strong>Butterfly Pose</strong> - Inner thigh stretch</li>
+                        <li><strong>Easy Pose</strong> - Meditation (60 seconds)</li>
+                    </ol>
+                </div>
+                <button id="startBtn" class="btn btn-primary btn-large">Start Session</button>
+            </div>
+        </div>
+
+        <div id="practiceScreen" class="practice-screen" style="display: none;">
+            <div class="practice-header">
+                <div class="session-info">
+                    <span class="round-badge">Round <span id="roundNumber">1</span></span>
+                    <span class="progress-text"><span id="poseProgress">0</span> / 8 poses</span>
+                </div>
+                <button id="endBtn" class="btn btn-danger">End Session</button>
+            </div>
+
+            <div class="practice-main">
+                <div class="video-section">
+                    <div class="video-container">
+                        <img id="videoFeed" src="{{ url_for('video_feed') }}" alt="Video Feed">
+                        <div id="statusOverlay" class="status-overlay">
+                            <div id="poseNameDisplay" class="pose-name-display"></div>
+                            <div id="statusIndicator" class="status-indicator"></div>
+                        </div>
+                        <div id="holdProgress" class="hold-progress" style="display: none;">
+                            <div class="hold-bar">
+                                <div id="holdBarFill" class="hold-bar-fill"></div>
+                            </div>
+                            <div id="holdText" class="hold-text">Hold: 0.0s / 3.0s</div>
+                        </div>
+                        <div id="meditationOverlay" class="meditation-overlay" style="display: none;">
+                            <div id="breathCycle" class="breath-cycle">Breathe In</div>
+                            <div class="meditation-progress">
+                                <div class="meditation-bar">
+                                    <div id="meditationBarFill" class="meditation-bar-fill"></div>
+                                </div>
+                                <div id="meditationText" class="meditation-text">60s remaining</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="feedbackBox" class="feedback-box">
+                        <div id="feedbackContent" class="feedback-content">
+                            Position yourself in front of the camera to begin
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reference-section">
+                    <div class="reference-header">
+                        <h3>Reference Pose</h3>
+                    </div>
+                    <div class="reference-image-container">
+                        <img id="referenceImage" src="" alt="Reference Pose" style="display: none;">
+                        <div id="transitionMessage" class="transition-message" style="display: none;"></div>
+                    </div>
+                    <div class="reference-instructions">
+                        <h4>Instructions:</h4>
+                        <ul id="instructionsList">
+                            <li>Stand in front of the camera</li>
+                            <li>Ensure your full body is visible</li>
+                            <li>Match the reference pose</li>
+                            <li>Hold the pose for 3 seconds</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="completionScreen" class="completion-screen" style="display: none;">
+            <div class="completion-content">
+                <div class="completion-icon">🎉</div>
+                <h1>Session Complete!</h1>
+                <div class="completion-stats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalRounds">0</div>
+                        <div class="stat-label">Rounds Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalPoses">0</div>
+                        <div class="stat-label">Poses Completed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="sessionDuration">0</div>
+                        <div class="stat-label">Minutes Practiced</div>
+                    </div>
+                </div>
+                <div class="completion-actions">
+                    <a href="/practice" class="btn btn-primary">Practice Again</a>
+                    <a href="/history" class="btn btn-secondary">View History</a>
+                    <a href="/" class="btn btn-secondary">Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- -------------------------------------- -->
+    <!-- ROUND COMPLETE MODAL (Added Block)     -->
+    <!-- -------------------------------------- -->
+    <div id="roundCompleteModal" class="round-modal">
+        <div class="round-modal-content">
+            <h2 id="roundCompleteTitle"></h2>
+            <p>Do you want to continue to the next round?</p>
+
+            <button id="continueRoundBtn" class="button-primary">Next Round</button>
+            <button id="endRoundBtn" class="button-secondary">End Session</button>
+        </div>
+    </div>
+
+    <style>
+        .round-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+        }
+        .round-modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 340px;
+            text-align: center;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .button-primary {
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #7a5afd;
+            color: white;
+            font-size: 16px;
+        }
+        .button-secondary {
+            width: 100%;
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #ddd;
+            font-size: 16px;
+        }
+    </style>
+
+    <script src="{{ url_for('static', filename='practice.js') }}"></script>
+</body>
+</html>
