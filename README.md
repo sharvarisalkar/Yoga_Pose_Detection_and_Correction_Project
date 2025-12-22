@@ -1,28 +1,37 @@
 # 🧘‍♂️ Yoga Pose Detection & Correction System
 
-Welcome to the Yoga Pose Detection and Correction System! This project uses computer vision and machine learning to help you practice yoga safely and effectively — even without a yoga instructor.
+The Yoga Pose Detection and Correction System is a full-stack web application that enables users to practice yoga safely and effectively through real-time pose detection and feedback. The system is designed as a website where users interact through a browser-based interface, while the backend processes live video input to detect, analyze, and validate yoga poses using machine learning and computer vision techniques.
 
 **📖 Project Overview -**
-Many beginners struggle to perform yoga poses correctly without proper guidance, which can lead to injuries or ineffective practice. Our project, Yoga Pose Detection and Correction System, helps solve this by using MediaPipe Pose and OpenCV to detect poses through a webcam and give real-time feedback. It checks the user’s posture by analyzing body landmarks and angles, compares them with correct pose data, and shows on-screen corrections if needed. The system includes two rounds of practice to help users improve and safely master each pose; without needing any extra devices or sensors.
+Many beginners struggle to maintain correct posture while practicing yoga without professional guidance. To address this challenge, we developed a web-based yoga pose correction system that works directly with a webcam. The frontend of the website provides an intuitive interface for starting sessions, viewing live pose detection, and receiving feedback. The backend, built using Python, handles pose estimation, joint angle calculation, and pose validation logic. By comparing detected body landmarks with predefined correct poses, the system delivers real-time visual feedback to help users improve posture and avoid injuries. The application includes two practice rounds to ensure users consistently perform each pose correctly, without requiring any external sensors or devices.
 
-**⚙️ Methodology -**
-1. The webcam captures live video as the user performs yoga poses.
-2. MediaPipe Pose detects 33 key body points like shoulders, elbows, hips, knees, and ankles.
-3. The system calculates joint angles to check body alignment and pose structure.
-4. It compares the pose with six predefined yoga poses using angle thresholds.
-5. If the pose is incorrect, on-screen feedback helps the user fix it.
-6. The user must hold the correct pose until the green progress bar is full to continue.
-7. After completing all six poses once, a second round starts from the first pose to ensure proper practice.
-This methodology enables continuous feedback and real-time correction, allowing users to practice yoga confidently and safely without an instructor.
+**⚙️ System Architecture & Methodology -**
+A. Frontend (Web Interface):
+- Built using HTML, CSS, and JavaScript
+- Displays live webcam feed, pose status, and feedback messages
+- Shows progress bar to indicate correct pose holding duration
 
-**🛠️ Technology:**
-- MediaPipe Pose
-- OpenCV
-- Python
-- Webcam
+B. Backend (Pose Processing Engine):
+- Developed using Python and Flask
+- Captures video frames from the webcam
+- Uses MediaPipe Pose to detect 33 body landmarks
+- Calculates joint angles and compares them with predefined thresholds
+- Sends real-time pose validation results to the frontend
+
+C. Practice Flow:
+1. Users must hold the correct pose until the progress bar completes
+2. Supports six predefined yoga poses
+3. A second practice round reinforces correct posture and consistency
+
+**🛠️ Technologies Used -**
+1. Frontend: HTML, CSS, JavaScript
+2. Backend: Python, Flask
+3. Computer Vision & ML: MediaPipe Pose, OpenCV
+4. Hardware: Webcam
 
 **💡 Features -**
-- Real-time detection & correction (good yoga posture or not)
-- Instant feedback
-- Supports multiple yoga poses (custom dataset)
-- User-friendly interface
+- Full-stack web-based yoga pose detection system
+- Real-time pose correction and instant feedback
+- Multiple yoga pose support with custom pose validation logic
+- User-friendly and interactive web interface
+- No external sensors or wearables required
